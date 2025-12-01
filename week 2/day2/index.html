@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
+    <link 
       rel="icon"
       type="image/png"
       sizes="32x32"
@@ -16,8 +16,8 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap");
       :root {
-        --bg: hsl(210, 60%, 98%);
-        --card: hsl(0, 0%, 100%);
+       
+       
         --muted: hsl(219, 14%, 63%);
         --text: hsl(219, 12%, 16%);
         --soft-blue: hsl(225, 100%, 97%);
@@ -28,7 +28,7 @@
         --shadow: 0 20px 30px rgba(46, 61, 73, 0.08);
       }
       .attribution {
-        font-size: 11px;
+        font-size: 16px;
         text-align: center;
       }
       .attribution a {
@@ -39,10 +39,9 @@
         height: 100%;
       }
       body {
-        font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial;
-        background: var(--bg);
-        color: var(--muted);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: hsl(210, 60%, 98%);
+        color: hsl(219, 14%, 63%);
         margin: 0;
         padding: 0;
         font-size: 16px;
@@ -52,7 +51,7 @@
       main {
         max-width: 730px;
         margin: 56px auto;
-        background: var(--card);
+        background: white;
         padding: 28px 28px 34px;
         border-radius: 12px;
         box-shadow: var(--shadow);
@@ -63,9 +62,11 @@
         justify-content: space-between;
         gap: 20px;
         margin-bottom: 18px;
+        padding: 0 8px;
       }
       h1 {
-        font-size: 20px;
+        font-size: 24px;
+        font-weight: 800;
         margin: 0;
         color: var(--text);
         display: flex;
@@ -78,14 +79,14 @@
         padding: 4px 9px;
         border-radius: 8px;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 16px;
       }
       .badge.badge--empty {
         background: hsl(223, 20%, 95%);
         color: hsl(219, 12%, 42%);
       }
       .mark-all a {
-        color: var(--muted);
+        color: hsl(219, 14%, 63%);
         text-decoration: none;
         font-weight: 600;
         cursor: pointer;
@@ -146,7 +147,7 @@
       }
       .single-notification .content p {
         margin: 0;
-        color: var(--muted);
+        color: hsl(219, 14%, 63%);
         line-height: 1.4;
       }
       .bold-black {
@@ -165,11 +166,11 @@
       }
       .message-box {
         margin-top: 12px;
-        background: var(--card);
+        background: white;
         border: 1px solid hsl(219, 14%, 96%);
         padding: 12px;
         border-radius: 6px;
-        color: var(--muted);
+        color: hsl(219, 14%, 63%);
         font-size: 14px;
       }
       .small-thumb {
@@ -190,13 +191,13 @@
           font-size: 15px;
         }
         main {
-          margin: 18px auto;
+          margin: 0;
           padding: 16px;
           border-radius: 10px;
           max-width: 360px;
         }
         h1 {
-          font-size: 18px;
+          font-size: 20px;
         }
         .badge {
           padding: 3px 8px;
@@ -260,8 +261,7 @@
         <div
           class="single-notification unread"
           data-initial-unread="true"
-          tabindex="0"
-          role="button"
+        
           aria-pressed="true"
         >
           <img
@@ -282,8 +282,7 @@
         <div
           class="single-notification unread"
           data-initial-unread="true"
-          tabindex="0"
-          role="button"
+         
           aria-pressed="true"
         >
           <img
@@ -304,8 +303,7 @@
         <div
           class="single-notification unread"
           data-initial-unread="true"
-          tabindex="0"
-          role="button"
+          
           aria-pressed="true"
         >
           <img
@@ -326,8 +324,7 @@
 
         <div
           class="single-notification"
-          tabindex="0"
-          role="button"
+          
           aria-pressed="false"
         >
           <img
@@ -352,8 +349,7 @@
 
         <div
           class="single-notification"
-          tabindex="0"
-          role="button"
+         
           aria-pressed="false"
         >
           <img
@@ -378,8 +374,7 @@
 
         <div
           class="single-notification"
-          tabindex="0"
-          role="button"
+         
           aria-pressed="false"
         >
           <img
@@ -402,8 +397,7 @@
 
         <div
           class="single-notification"
-          tabindex="0"
-          role="button"
+
           aria-pressed="false"
         >
           <img
@@ -425,54 +419,70 @@
     </main>
 
     <script>
-      !(function () {
-        const n = Array.from(document.querySelectorAll(".single-notification")),
-          b = document.getElementById("unread-count"),
-          m = document.getElementById("mark-all"),
-          u = () => n.filter((x) => x.classList.contains("unread")).length,
-          r = () => {
-            const c = u();
-            b.textContent = c;
-            b.classList.toggle("badge--empty", c === 0);
-            m && m.setAttribute("aria-pressed", String(c === 0));
-          };
-        n.forEach((el) => {
-          el.classList.contains("unread") &&
-            (el.dataset.initialUnread = "true");
-          el.addEventListener("click", () => {
-            const s = el.classList.toggle("unread");
-            el.setAttribute("aria-pressed", String(s));
-            r();
-          });
-          el.addEventListener("keydown", (e) => {
-            ("Enter" === e.key || " " === e.key) &&
-              (e.preventDefault(), el.click());
+      (function () {
+        
+        const notifications = Array.from(
+            document.querySelectorAll('.single-notification')
+          );
+         const  unreadBadge = document.getElementById('unread-count');
+         const  markAll = document.getElementById('mark-all');
+
+        function getUnreadCount() {
+          return notifications.filter((n) => n.classList.contains('unread')).length;
+        }
+
+        function updateBadge() {
+          const count = getUnreadCount();
+          if (unreadBadge) {
+            unreadBadge.textContent = String(count);
+            unreadBadge.classList.toggle('badge--empty', count === 0);
+          }
+          if (markAll) {
+            markAll.setAttribute('aria-pressed', String(count === 0));
+          }
+        }
+
+        notifications.forEach((item) => {
+         
+          if (item.classList.contains('unread')) {
+            item.dataset.initialUnread = 'true';
+            item.setAttribute('aria-pressed', 'true');
+          } else {
+            item.setAttribute('aria-pressed', 'false');
+          }
+
+          // Toggle read/unread on click
+          item.addEventListener('click', () => {
+            const isUnread = item.classList.toggle('unread');
+            item.setAttribute('aria-pressed', String(isUnread));
+            updateBadge();
           });
         });
-        if (m) {
-          m.addEventListener("click", (e) => {
+
+        if (markAll) {
+          markAll.addEventListener('click', (e) => {
             e.preventDefault();
-            const c = u();
-            if (c > 0) {
-              n.forEach((x) => {
-                x.classList.remove("unread");
-                x.setAttribute("aria-pressed", "false");
+            const count = getUnreadCount();
+            if (count > 0) {
+              // mark all as read
+              notifications.forEach((n) => {
+                n.classList.remove('unread');
+                n.setAttribute('aria-pressed', 'false');
               });
             } else {
-              n.forEach((x) => {
-                "true" === x.dataset.initialUnread &&
-                  (x.classList.add("unread"),
-                  x.setAttribute("aria-pressed", "true"));
+              // restore those that were initially unread
+              notifications.forEach((n) => {
+                if (n.dataset.initialUnread === 'true') {
+                  n.classList.add('unread');
+                  n.setAttribute('aria-pressed', 'true');
+                }
               });
             }
-            r();
-          });
-          m.addEventListener("keydown", (e) => {
-            ("Enter" === e.key || " " === e.key) &&
-              (e.preventDefault(), m.click());
+            updateBadge();
           });
         }
-        r();
+
+        updateBadge();
       })();
     </script>
   </body>
