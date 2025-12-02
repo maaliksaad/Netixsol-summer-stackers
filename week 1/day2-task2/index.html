@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://kit.fontawesome.com/0a62e2c0b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .main-container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      /* PERSONAL INFO */
+
+      .personal-info {
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 2px solid #000;
+      }
+
+      .personal-info .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0.7rem;
+      }
+
+      .contact-info i {
+        color: teal;
+        margin-right: 5px;
+      }
+
+      .personal-info h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .personal-info p {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      /* UNIVERSAL SECTION STYLE */
+
+      .section {
+        display: flex;
+        padding: 1.5rem 0;
+        border-bottom: 2px solid black;
+      }
+
+      .section-heading {
+        width: 25%;
+      }
+
+      .section-heading h2 {
+        font-size: 1.6rem;
+      }
+
+      .section-content {
+        width: 75%;
+      }
+
+      /* PROFILE */
+
+      .profile-container {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .profile-container .box {
+        width: 30%;
+      }
+
+      .profile-container i {
+        color: teal;
+        margin-right: 5px;
+        font-size: 1.2rem;
+      }
+
+      .profile-container .box p {
+        margin-top: 0.3rem;
+      }
+
+      /* EXPERIENCE */
+
+      .exp-box {
+        margin-bottom: 1.5rem;
+      }
+
+      .exp-link i {
+        color: teal;
+        margin-right: 5px;
+      }
+
+      .exp-box ul {
+        margin-left: 1.3rem;
+        line-height: 1.5;
+      }
+
+      .exp-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .exp-container h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      /*
+########## Education ##############*/
+
+      .edu-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .edu-container h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      /* PROJECTS */
+
+      .projects-container {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .projects-container .box {
+        width: 48%;
+      }
+
+      .projects-container .box h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .projects-container .box p {
+        margin-bottom: 0.5rem;
+      }
+
+      /* SKILLS */
+
+      .skills-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .skills-container .box {
+        width: 30%;
+      }
+
+      .skills-container .box h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .skills-container .box p {
+        margin-bottom: 0.5rem;
+      }
+
+      /* CERTIFICATIONS */
+
+      .cert-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .cert-container .box {
+        width: 45%;
+      }
+
+      .cert-container .box h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .cert-container .box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .cert-date {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      /* LANGUAGES */
+
+      .lang-container {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .lang-container h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .lang-container .box {
+        width: 40%;
+      }
+
+      .references-content{
+        font-weight: bold;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 900px) {
+        .section {
+          flex-direction: column;
+          padding: 1rem 0;
+        }
+        .section-heading,
+        .section-content {
+          width: 100%;
+        }
+        .section-heading {
+          margin-bottom: 0.6rem;
+        }
+        .personal-info .contact-info {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .profile-container {
+          flex-direction: row;
+        }
+        .profile-container .box {
+          width: 48%;
+          margin-bottom: 0.6rem;
+        }
+        .projects-container .box {
+          width: 100%;
+        }
+        .skills-container {
+          flex-direction: column;
+        }
+        .skills-container .box {
+          width: 100%;
+          margin-bottom: 0.6rem;
+        }
+        .cert-container {
+          flex-direction: column;
+        }
+        .cert-container .box {
+          width: 100%;
+          margin-bottom: 0.6rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .lang-container {
+          flex-direction: row;
+          
+        }
+        .lang-container .box {
+          width: 48%;
+        }
+        .exp-container,
+        .edu-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .exp-container .right-exp-box,
+        .edu-container .right-edu-box {
+          margin-top: 0.6rem;
+        }
+        body {
+          margin: 12px;
+        }
+        .main-container {
+          padding: 0 12px;
+          max-width: 760px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .profile-container {
+          flex-wrap: wrap;
+          text-align: center;
+          
+        }
+        .personal-info h1 {
+          font-size: 1.6rem;
+        }
+        .personal-info p {
+          font-size: 1rem;
+        }
+        .contact-info {
+          font-size: 0.95rem;
+          gap: 10px;
+        }
+        .profile-container .box {
+          width: 100%;
+          
+        }
+        .lang-container .box {
+          width: 100%;
+        }
+        .section-heading h2 {
+          font-size: 1.2rem;
+        }
+        .projects-container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div class="container">
+        <!-- PERSONAL INFO -->
+        <div class="personal-info">
+          <h1>John Doe</h1>
+          <p>Creative and Innovative Web Developer</p>
+          <div class="contact-info">
+            <div>
+              <i class="fas fa-map-marker-alt"></i> Pleasantville, CA 94588
+            </div>
+            <div><i class="fas fa-phone"></i> (555) 123-4567</div>
+            <div><i class="fas fa-envelope"></i> john.doe@gmail.com</div>
+            <div><i class="fas fa-globe"></i> https://johndoe.me/</div>
+          </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="section profile">
+          <div class="section-heading">
+            <h2>Profiles</h2>
+          </div>
+          <div class="section-content profile-container">
+            <div class="box">
+              <i class="fab fa-linkedin-in"></i> <span>johndoe</span>
+              <p>LinkedIn</p>
+            </div>
+
+            <div class="box">
+              <i class="fab fa-github"></i> <span>johndoe</span>
+              <p>GitHub</p>
+            </div>
+
+            <div class="box">
+              <i class="fab fa-stack-overflow"></i> <span>johndoe</span>
+              <p>Stack Overflow</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="section summary">
+          <div class="section-heading">
+            <h2>Summary</h2>
+          </div>
+          <div class="section-content">
+            <p>
+              Innovative Web Developer with 5 years of experience in building
+              impactful and user-friendly websites and applications. Specializes
+              in <strong>front-end technologies</strong> and passionate about
+              modern web standards and cutting-edge development techniques.
+              Proven track record of leading successful projects from concept to
+              deployment.
+            </p>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="section experience">
+          <div class="section-heading">
+            <h2>Experience</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="exp-box">
+              <div class="exp-container">
+                <div class="left-exp-box">
+                  <h3>Creative Solutions Inc.</h3>
+                  <span>Senior Web Developer</span>
+                </div>
+                <div class="right-exp-box">
+                  <h3>Jan 2019 to Present</h3>
+                  <span>San Francisco, CA</span>
+                </div>
+              </div>
+
+              <p class="exp-link">
+                <i class="fas fa-link"></i> https://creativesolutions.inc/
+              </p>
+
+              <ul>
+                <li>
+                  Spearheaded the redesign of the main product website,
+                  resulting in a 40% increase in user engagement.
+                </li>
+                <li>
+                  Developed and implemented a new responsive framework,
+                  improving cross-device compatibility.
+                </li>
+                <li>
+                  Mentored a team of 4 junior developers, fostering a culture of
+                  technical excellence.
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-box">
+              <div class="exp-container">
+                <div class="left-exp-box">
+                  <h3>Tech Advancers</h3>
+                  <span>Web Developer</span>
+                </div>
+                <div class="right-exp-box">
+                  <h3>Jun 2016 to Dec 2018</h3>
+                  <span>San Jose, CA</span>
+                </div>
+              </div>
+
+              <p class="exp-link">
+                <i class="fas fa-link"></i> https://techadvancers.com/
+              </p>
+
+              <ul>
+                <li>
+                  Collaborated in a team of 10 to develop high-quality web
+                  applications using React.js and Node.js.
+                </li>
+                <li>
+                  Managed the integration of third-party services such as Stripe
+                  for payments and Twilio for SMS services.
+                </li>
+                <li>
+                  Optimized application performance, achieving a 30% reduction
+                  in load times.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="section education">
+          <div class="section-heading">
+            <h2>Education</h2>
+          </div>
+          <div class="section-content">
+            <div class="edu-container">
+              <div class="left-edu-box">
+                <h3>University of California</h3>
+                <span>Berkeley, CA </span>
+              </div>
+              <div class="right-edu-box">
+                <h3>Aug 2012 to May 2016</h3>
+                <span>Bachelor's in Computer Science</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="section projects">
+          <div class="section-heading">
+            <h2>Projects</h2>
+          </div>
+
+          <div class="section-content projects-container">
+            <div class="box">
+              <h3>E-Commerce Platform</h3>
+              <p>Project Lead</p>
+              <p>
+                Led the development of a full-stack e-commerce platform,
+                improving sales conversion by 25%.
+              </p>
+            </div>
+
+            <div class="box">
+              <h3>Interactive Dashboard</h3>
+              <p>Frontend Developer</p>
+              <p>
+                Created an interactive analytics dashboard for a SaaS
+                application, enhancing data visualization for clients.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="section skills">
+          <div class="section-heading">
+            <h2>Skills</h2>
+          </div>
+
+          <div class="section-content skills-container">
+            <div class="box">
+              <h3>Web Technologies</h3>
+              <p>Advanced</p>
+              <p>HTML5, JavaScript, PHP, Python</p>
+            </div>
+
+            <div class="box">
+              <h3>Web Frameworks</h3>
+              <p>Intermediate</p>
+              <p>React.js, Angular, Vue.js, Laravel, Django</p>
+            </div>
+
+            <div class="box">
+              <h3>Tools</h3>
+              <p>Intermediate</p>
+              <p>Webpack, Git, Jenkins, Docker, JIRA</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATIONS -->
+        <div class="section certifications">
+          <div class="section-heading">
+            <h2>Certifications</h2>
+          </div>
+
+          <div class="section-content cert-container">
+            <div class="box">
+              <div class="cert-box">
+                <h3>Full-Stack Web Development</h3>
+                <p>CodeAcademy</p>
+              </div>
+
+              <p class="cert-date">2020</p>
+            </div>
+
+            <div class="box">
+              <div class="cert-box">
+                <h3>AWS Certified Developer</h3>
+                <p>Amazon Web Services</p>
+              </div>
+              <p class="cert-date">2019</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="section languages">
+          <div class="section-heading">
+            <h2>Languages</h2>
+          </div>
+
+          <div class="section-content lang-container">
+            <div class="box">
+              <h3>English</h3>
+              <p>Native Speaker</p>
+            </div>
+
+            <div class="box">
+              <h3>Spanish</h3>
+              <p>Intermediate</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- REFERENCES -->
+        <div class="section references">
+          <div class="section-heading">
+            <h2>References</h2>
+          </div>
+          <div class="section-content references-content">
+            <p>Available upon request</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
