@@ -1,44 +1,77 @@
 const express = require('express');
 const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
 const path = require('path');
 const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
 
 const taskRoutes = require('./routes/tasks');
 const { getTaskStats } = require('./controllers/taskController');
 
-// Create Express app
 const app = express();
-
-// Load Swagger documentation
-const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Serve API documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Serve static files (Swagger UI assets)
+app.use('/swagger-ui', express.static(path.join(__dirname, '../public/swagger-ui')));
+app.use('/swagger.yaml', express.static(path.join(__dirname, '../public/swagger.yaml')));
+
+// Swagger UI HTML
+app.get('/api-docs', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <link rel="stylesheet" type="text/css" href="/swagger-ui/swagger-ui.css" />
+      </head>
+      <body>
+        <div id="swagger-ui"></div>
+        <script src="/swagger-ui/swagger-ui-bundle.js"></script>
+        <script src="/swagger-ui/swagger-ui-standalone-preset.js"></script>
+        <script>
+          window.onload = function() {
+            SwaggerUIBundle({
+              url: '/swagger.yaml',
+              dom_id: '#swagger-ui',
+              presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+              ],
+              layout: "StandaloneLayout"
+            });
+          };
+        </script>
+      </body>
+    </html>
+  `);
+});
 
 // API Routes
 app.use('/api/tasks', taskRoutes);
-app.use('/api/stats', getTaskStats)
+app.get('/api/stats', getTaskStats);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'API is running',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime()
-    });
+  res.status(200).json({
+    success: true,
+    message: 'API is running',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
 
-// Welcome route - Redirect to API docs
+// Welcome route
 app.get('/', (req, res) => {
-    res.redirect('/api-docs');
+  res.json({
+    success: true,
+    message: 'Welcome to Task Manager API',
+    documentation: '/api-docs',
+    endpoints: {
+      tasks: '/api/tasks',
+      health: '/health'
+    }
+  });
 });
 
 // 404 handler

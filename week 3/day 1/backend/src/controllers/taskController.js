@@ -1,15 +1,21 @@
-const { v4: uuidv4 } = require("uuid");
+// Fix for uuid in CommonJS (Vercel compatible)
+let uuidv4;
+(async () => {
+  const { v4 } = await import("uuid");
+  uuidv4 = v4;
+})();
+
 const { sendSuccess, sendError } = require("../utils/responseHandler");
 
 let tasks = [
   {
-    id: uuidv4(),
+    id: crypto.randomUUID(), // alternative if uuid fails early
     title: "Sample Task 1",
     description: "This is a sample task",
     completed: false,
   },
   {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     title: "Sample Task 2",
     description: "This is another sample task",
     completed: true,
@@ -50,21 +56,21 @@ const getTaskById = (req, res) => {
 };
 
 const createTask = (req, res) => {
-    try {
-        const { title, completed = false } = req.body;
-        
-        const newTask = {
-            id: uuidv4(),
-            title: title.trim(),
-            completed
-        };
-        
-        tasks.push(newTask);
-        
-        return sendSuccess(res, newTask, 'Task created successfully', 201);
-    } catch (error) {
-        return sendError(res, 'Failed to create task', 500);
-    }
+  try {
+    const { title, completed = false } = req.body;
+
+    const newTask = {
+      id: uuidv4(),
+      title: title.trim(),
+      completed,
+    };
+
+    tasks.push(newTask);
+
+    return sendSuccess(res, newTask, "Task created successfully", 201);
+  } catch (error) {
+    return sendError(res, "Failed to create task", 500);
+  }
 };
 
 const updateTask = (req, res) => {
@@ -105,22 +111,25 @@ const deleteTask = (req, res) => {
 };
 
 const getTaskStats = (req, res) => {
-    try {
-        const totalTasks = tasks.length;
-        const completedTasks = tasks.filter(task => task.completed).length;
-        const pendingTasks = totalTasks - completedTasks;
-        
-        const stats = {
-            total: totalTasks,
-            completed: completedTasks,
-            pending: pendingTasks,
-            completionRate: totalTasks > 0 ? (completedTasks / totalTasks * 100).toFixed(2) : 0
-        };
-        
-        return sendSuccess(res, stats, 'Statistics retrieved successfully');
-    } catch (error) {
-        return sendError(res, 'Failed to retrieve statistics', 500);
-    }
+  try {
+    const totalTasks = tasks.length;
+    const completedTasks = tasks.filter((task) => task.completed).length;
+    const pendingTasks = totalTasks - completedTasks;
+
+    const stats = {
+      total: totalTasks,
+      completed: completedTasks,
+      pending: pendingTasks,
+      completionRate:
+        totalTasks > 0
+          ? ((completedTasks / totalTasks) * 100).toFixed(2)
+          : 0,
+    };
+
+    return sendSuccess(res, stats, "Statistics retrieved successfully");
+  } catch (error) {
+    return sendError(res, "Failed to retrieve statistics", 500);
+  }
 };
 
 module.exports = {
