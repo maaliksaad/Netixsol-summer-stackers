@@ -1,0 +1,16 @@
+# Ignore all node_modules recursively
+**/node_modules/
+
+# Ignore environment files
+**/.env
+**/.env.*
+
+# Ignore local Vercel config
+**/.vercel/
+
+# Logs
+**/*.log
+
+# Ignore docs or test folders if needed
+**/docs/
+**/tests/
