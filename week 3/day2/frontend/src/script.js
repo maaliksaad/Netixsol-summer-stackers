@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', () => {
             const isDark = document.documentElement.classList.contains('dark');
             document.documentElement.classList.toggle('dark', !isDark);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
         });
     });
     
